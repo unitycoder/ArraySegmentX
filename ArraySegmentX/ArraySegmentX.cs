@@ -25,6 +25,10 @@ using System;
 
 public struct ArraySegmentX<T>
 {
+    public readonly T[] Array;
+    public readonly int Offset;
+    public readonly int Count;
+
     public ArraySegmentX(T[] array)
     {
         if (array == null) throw new ArgumentNullException("array");
@@ -45,10 +49,6 @@ public struct ArraySegmentX<T>
         Offset = offset;
         Count = count;
     }
-
-    public readonly T[] Array;
-    public readonly int Offset;
-    public readonly int Count;
 
     // TODO equals, gethashcode, etc.
     // TODO []
