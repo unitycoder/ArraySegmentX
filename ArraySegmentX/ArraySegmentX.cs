@@ -23,6 +23,8 @@ THE SOFTWARE.
 */
 using System;
 
+// no namespace. drop it in and use it directly anywhere.
+
 public struct ArraySegmentX<T>
 {
     // readonly instead of property to avoid two IL calls each time.
