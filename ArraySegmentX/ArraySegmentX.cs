@@ -51,6 +51,14 @@ public struct ArraySegmentX<T>
         Count = count;
     }
 
+    // [] indexer for convenience.
+    // this requires an IL call though.
+    // use segment.Array[segment.Offset + i] directly when performance matters.
+    public T this[int index]
+    {
+        get { return Array[Offset + index]; }
+        set { Array[Offset + index] = value; }
+    }
+
     // TODO equals, gethashcode, etc.
-    // TODO []
 }
