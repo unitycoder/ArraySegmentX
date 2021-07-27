@@ -25,6 +25,7 @@ using System;
 
 public struct ArraySegmentX<T>
 {
+    // readonly instead of property to avoid two IL calls each time.
     public readonly T[] Array;
     public readonly int Offset;
     public readonly int Count;
