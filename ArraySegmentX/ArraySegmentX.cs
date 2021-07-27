@@ -58,6 +58,8 @@ public struct ArraySegmentX<T>
     // use segment.Array[segment.Offset + i] directly when performance matters.
     public T this[int index]
     {
+        // TODO make sure it's within count.
+        // don't allow accesing outside of segment.
         get { return Array[Offset + index]; }
         set { Array[Offset + index] = value; }
     }
