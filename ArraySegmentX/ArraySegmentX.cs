@@ -23,9 +23,10 @@ public struct ArraySegmentX<T>
         Count = count;
     }
 
-    public T[] Array { get; }
-    public int Offset { get; }
-    public int Count { get; }
+    public readonly T[] Array;
+    public readonly int Offset;
+    public readonly int Count;
 
     // TODO equals, gethashcode, etc.
+    // TODO []
 }

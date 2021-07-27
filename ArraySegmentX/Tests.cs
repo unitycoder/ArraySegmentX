@@ -40,7 +40,7 @@ namespace ArraySegmentX
         }
 
         [Test]
-        [TestCase(1_000_000)] // 5.2s
+        [TestCase(1_000_000)] // 1.4s
         public void ArraySegmentXTest(int iterations)
         {
             // ArraySegment always uses Array[Array.Offset + i].
