@@ -1,4 +1,6 @@
-﻿/*
+﻿// high performance ArraySegment<T> for C#.
+// https://github.com/vis2k/ArraySegmentX
+/*
 MIT License
 
 Copyright (c) 2021, Michael W. (vis2k)
@@ -25,7 +27,6 @@ using System;
 
 // no namespace. drop it in and use it directly anywhere.
 
-// TODO link source and description above file
 public readonly struct ArraySegmentX<T>
 {
     // readonly instead of property to avoid two IL calls each time.
