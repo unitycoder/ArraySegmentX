@@ -203,5 +203,23 @@ namespace ArraySegmentX
             Assert.That(other == segment, Is.False);
             Assert.That(other != segment, Is.True);
         }
+
+        [Test]
+        public void ImplicitConversions()
+        {
+            ArraySegmentX<byte> segment = new ArraySegmentX<byte>(bytes);
+
+            // X -> original
+            ArraySegment<byte> original = segment;
+            Assert.That(original.Array, Is.EqualTo(segment.Array));
+            Assert.That(original.Offset, Is.EqualTo(segment.Offset));
+            Assert.That(original.Count, Is.EqualTo(segment.Count));
+
+            // original -> X
+            ArraySegmentX<byte> x = original;
+            Assert.That(x.Array, Is.EqualTo(original.Array));
+            Assert.That(x.Offset, Is.EqualTo(original.Offset));
+            Assert.That(x.Count, Is.EqualTo(original.Count));
+        }
     }
 }

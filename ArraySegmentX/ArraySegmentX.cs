@@ -81,5 +81,10 @@ public struct ArraySegmentX<T>
     public static bool operator ==(ArraySegmentX<T> a, ArraySegmentX<T> b) => a.Equals(b);
     public static bool operator !=(ArraySegmentX<T> a, ArraySegmentX<T> b) => !(a == b);
 
-    // TODO to original ArraySegment auto cast operator???
+    // implicit conversions to / from original ArraySegment for ease of use
+    public static implicit operator ArraySegment<T>(ArraySegmentX<T> segment) =>
+        new ArraySegment<T>(segment.Array, segment.Offset, segment.Count);
+
+    public static implicit operator ArraySegmentX<T>(ArraySegment<T> segment) =>
+        new ArraySegmentX<T>(segment.Array, segment.Offset, segment.Count);
 }
