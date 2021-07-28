@@ -152,6 +152,23 @@ namespace ArraySegmentX
         }
 
         [Test]
+        public void ArrayOperator()
+        {
+            bytes[2] = 0xFF;
+
+            // create a segment with an offset
+            ArraySegmentX<byte> segment = new ArraySegmentX<byte>(bytes, 1, bytes.Length - 1);
+
+            // make sure that [] considers it
+            // -> get
+            Assert.That(segment[1], Is.EqualTo(0xFF));
+
+            // -> set
+            segment[1] = 0xAA;
+            Assert.That(bytes[2], Is.EqualTo(0xAA));
+        }
+
+        [Test]
         public void GetHashCodeTest()
         {
             ArraySegmentX<byte> segment = new ArraySegmentX<byte>(bytes);
