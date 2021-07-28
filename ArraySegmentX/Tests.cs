@@ -166,5 +166,19 @@ namespace ArraySegmentX
             // should be different compared to others
             Assert.That(hash, !Is.EqualTo(new ArraySegmentX<byte>().GetHashCode()));
         }
+
+        [Test]
+        public void EqualsTest()
+        {
+            ArraySegmentX<byte> segment = new ArraySegmentX<byte>(bytes);
+            ArraySegmentX<byte> other = new ArraySegmentX<byte>();
+            ArraySegmentX<byte> copy = segment;
+
+            Assert.That(segment.Equals(segment), Is.True);
+            Assert.That(copy.Equals(segment), Is.True);
+            Assert.That(segment.Equals(copy), Is.True);
+            Assert.That(segment.Equals(other), Is.False);
+            Assert.That(other.Equals(segment), Is.False);
+        }
     }
 }
