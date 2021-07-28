@@ -107,6 +107,22 @@ namespace ArraySegmentX
             {
                 for (int j = 0; j < bytes.Length; ++j)
                 {
+                    // this call:
+                    // IL_0018: ldloca.s     segment
+                    // IL_001a: ldloc.2      // j
+                    // IL_001b: call         instance !0/*unsigned int8*/ valuetype ArraySegmentX`1<unsigned int8>::get_Item(int32)
+                    // IL_0020: stloc.3      // n
+
+                    // ArraySegmentX.[].get:
+                    // IL_0001: ldarg.0      // this
+                    // IL_0002: ldfld        !0/*T*/[] valuetype ArraySegmentX`1<!0/*T*/>::Array
+                    // IL_0007: ldarg.0      // this
+                    // IL_0008: ldfld        int32 valuetype ArraySegmentX`1<!0/*T*/>::Offset
+                    // IL_000d: ldarg.1      // index
+                    // IL_000e: add
+                    // IL_000f: ldelem       !0/*T*/
+                    // IL_0014: stloc.0      // V_0
+                    // IL_0015: br.s         IL_0017
                     int n = segment[j];
                 }
             }
