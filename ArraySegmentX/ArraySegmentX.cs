@@ -82,7 +82,7 @@ public readonly struct ArraySegmentX<T>
 
     // Equals from netcore ArraySegment<T>
     public override bool Equals(object obj) =>
-        obj is ArraySegmentX<T> && Equals((ArraySegmentX<T>)obj);
+        obj is ArraySegmentX<T> x && Equals(x);
 
     public bool Equals(ArraySegmentX<T> obj) =>
         obj.Array == Array && obj.Offset == Offset && obj.Count == Count;
