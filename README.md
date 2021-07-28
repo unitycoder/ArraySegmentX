@@ -46,4 +46,5 @@ int n = segment[i];
 ```
   
 ArraySegmentX<T> adds [] access for covenience.
-**NOTE that this requires an IL call instruction. Use the long access way where performance matters.**
+  
+**NOTE that this requires an IL call instruction. Use the long way where performance matters.**
