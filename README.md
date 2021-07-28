@@ -19,8 +19,31 @@ In most cases, it doesn't matter.
 For heavy number crunching like in [Mirror](https://github.com/vis2k/Mirror/)'s delta compression, it does matter.
   
 ## Benchmarks
-Very simple benchmarks are included in Tests.cs:
-<img width="365" alt="2021-07-28_11-45-22@2x" src="https://user-images.githubusercontent.com/16416509/127260325-6025f444-9b80-4b18-97df-b2f8be6cfd24.png">
+### Test.cs simple benchmarks with 1 million iterations
+  
+- byte[]: **1.5s**
+- ArraySegment<byte>: **3.6s**
+- ArraySegmentX<byte>: **1.5s**
 
-Mirror's delta compression algorithm is dramatically faster:
-<img width="367" alt="2021-07-28_11-51-15@2x" src="https://user-images.githubusercontent.com/16416509/127260747-fff70deb-64fe-46af-8fd0-9f5ceaf2dc5b.png">
+**=> 2.4x faster**
+  
+### Mirror's delta compression with 10k iterations, 1000 bytes, 1% changes:
+  
+- byte[]: **1.7s**
+- ArraySegment<byte>: **6.4s**
+- ArraySegmentX<byte>: **1.7s**
+  
+**=> 3.76x faster**
+ 
+## Convenience [] access
+Unity's ArraySegment does not support direct [] access:
+```cs
+// supported
+int n = segment.Array[segment.Offset + i];
+  
+// not supported
+int n = segment[i];
+```
+  
+ArraySegmentX<T> adds [] access for covenience.
+**NOTE that this requires an IL call instruction. Use the long access way where performance matters.**
