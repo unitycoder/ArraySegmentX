@@ -78,6 +78,23 @@ namespace ArraySegmentX
             }
         }
 
+        // ArraySegment.[] indexer performance
+        [Test]
+        [TestCase(1_000_000)] // 2.7s
+        public void ArraySegment_Indexer_Test(int iterations)
+        {
+            // ArraySegment always uses Array[Array.Offset + i].
+            // let's use an offset here too for fairness.
+            ArraySegment<byte> segment = new ArraySegment<byte>(bytes);
+            for (int i = 0; i < iterations; ++i)
+            {
+                for (int j = 0; j < bytes.Length; ++j)
+                {
+                    int n = segment[j];
+                }
+            }
+        }
+
         // ArraySegmentX.[] indexer for convenience
         [Test]
         [TestCase(1_000_000)] // 3.6s
