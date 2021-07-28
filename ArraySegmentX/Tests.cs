@@ -150,5 +150,21 @@ namespace ArraySegmentX
                 }
             }
         }
+
+        [Test]
+        public void GetHashCodeTest()
+        {
+            ArraySegmentX<byte> segment = new ArraySegmentX<byte>(bytes);
+            int hash = segment.GetHashCode();
+
+            // should be != 0
+            Assert.That(hash, !Is.EqualTo(0));
+
+            // should be same when called again
+            Assert.That(hash, Is.EqualTo(segment.GetHashCode()));
+
+            // should be different compared to others
+            Assert.That(hash, !Is.EqualTo(new ArraySegmentX<byte>().GetHashCode()));
+        }
     }
 }
