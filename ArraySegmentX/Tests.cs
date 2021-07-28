@@ -180,5 +180,28 @@ namespace ArraySegmentX
             Assert.That(segment.Equals(other), Is.False);
             Assert.That(other.Equals(segment), Is.False);
         }
+
+        [Test]
+        public void EqualsOperatorTest()
+        {
+            ArraySegmentX<byte> segment = new ArraySegmentX<byte>(bytes);
+            ArraySegmentX<byte> other = new ArraySegmentX<byte>();
+            ArraySegmentX<byte> copy = segment;
+
+            Assert.That(segment == segment, Is.True);
+            Assert.That(segment != segment, Is.False);
+
+            Assert.That(copy == segment, Is.True);
+            Assert.That(copy != segment, Is.False);
+
+            Assert.That(segment == copy, Is.True);
+            Assert.That(segment != copy, Is.False);
+
+            Assert.That(segment == other, Is.False);
+            Assert.That(segment != other, Is.True);
+
+            Assert.That(other == segment, Is.False);
+            Assert.That(other != segment, Is.True);
+        }
     }
 }

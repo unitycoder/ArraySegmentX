@@ -77,5 +77,9 @@ public struct ArraySegmentX<T>
     public bool Equals(ArraySegmentX<T> obj) =>
         obj.Array == Array && obj.Offset == Offset && obj.Count == Count;
 
+    // operators
+    public static bool operator ==(ArraySegmentX<T> a, ArraySegmentX<T> b) => a.Equals(b);
+    public static bool operator !=(ArraySegmentX<T> a, ArraySegmentX<T> b) => !(a == b);
+
     // TODO to original ArraySegment auto cast operator???
 }
