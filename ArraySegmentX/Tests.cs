@@ -90,6 +90,29 @@ namespace ArraySegmentX
             {
                 for (int j = 0; j < bytes.Length; ++j)
                 {
+                    // this call:
+                    // IL_0018: ldloca.s     segment
+                    // IL_001a: ldloc.2      // j
+                    // IL_001b: call         instance !0/*unsigned int8*/ valuetype [System.Runtime]System.ArraySegment`1<unsigned int8>::get_Item(int32)
+                    // IL_0020: stloc.3      // n
+
+                    // ArraySegment<T>.[].get:
+                    // IL_0000: ldarg.1      // index
+                    // IL_0001: ldarg.0      // this
+                    // IL_0002: ldfld        int32 valuetype System.ArraySegment`1<!0/*T*/>::_count
+                    // IL_0007: blt.un.s     IL_000e
+                    //
+                    // IL_0009: call         void System.ThrowHelper::ThrowArgumentOutOfRange_IndexException()
+                    //
+                    // // [78 17 - 78 49]
+                    // IL_000e: ldarg.0      // this
+                    // IL_000f: ldfld        !0/*T*/[] valuetype System.ArraySegment`1<!0/*T*/>::_array
+                    // IL_0014: ldarg.0      // this
+                    // IL_0015: ldfld        int32 valuetype System.ArraySegment`1<!0/*T*/>::_offset
+                    // IL_001a: ldarg.1      // index
+                    // IL_001b: add
+                    // IL_001c: ldelem       !0/*T*/
+                    // IL_0021: ret
                     int n = segment[j];
                 }
             }
