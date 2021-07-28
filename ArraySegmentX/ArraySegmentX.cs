@@ -75,9 +75,10 @@ public readonly struct ArraySegmentX<T>
         }
     }
 
-    // GetHashCode from netcore ArraySegment<T>
     public override int GetHashCode() =>
-        Array is null ? 0 : HashCode.Combine(Offset, Count, Array.GetHashCode());
+        // netcore version doesn't work in Unity because HashCode is internal
+        //Array is null ? 0 : HashCode.Combine(Offset, Count, Array.GetHashCode());
+        Array == null ? 0 : Array.GetHashCode() ^ Offset ^ Count;
 
     // Equals from netcore ArraySegment<T>
     public override bool Equals(object obj) =>
