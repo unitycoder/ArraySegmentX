@@ -25,6 +25,8 @@ using System;
 
 // no namespace. drop it in and use it directly anywhere.
 
+// TODO readonly
+// TODO link source and description above file
 public struct ArraySegmentX<T>
 {
     // readonly instead of property to avoid two IL calls each time.
@@ -64,5 +66,10 @@ public struct ArraySegmentX<T>
         set { Array[Offset + index] = value; }
     }
 
+    // GetHashCode from netcore ArraySegment<T>
+    public override int GetHashCode() =>
+        Array is null ? 0 : HashCode.Combine(Offset, Count, Array.GetHashCode());
+
     // TODO equals, gethashcode, etc.
+    // TODO to original ArraySegment auto cast operator???
 }
