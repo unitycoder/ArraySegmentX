@@ -25,9 +25,8 @@ using System;
 
 // no namespace. drop it in and use it directly anywhere.
 
-// TODO readonly
 // TODO link source and description above file
-public struct ArraySegmentX<T>
+public readonly struct ArraySegmentX<T>
 {
     // readonly instead of property to avoid two IL calls each time.
     public readonly T[] Array;
