@@ -70,6 +70,12 @@ public struct ArraySegmentX<T>
     public override int GetHashCode() =>
         Array is null ? 0 : HashCode.Combine(Offset, Count, Array.GetHashCode());
 
-    // TODO equals, gethashcode, etc.
+    // Equals from netcore ArraySegment<T>
+    public override bool Equals(object? obj) =>
+        obj is ArraySegmentX<T> && Equals((ArraySegmentX<T>)obj);
+
+    public bool Equals(ArraySegmentX<T> obj) =>
+        obj.Array == Array && obj.Offset == Offset && obj.Count == Count;
+
     // TODO to original ArraySegment auto cast operator???
 }
