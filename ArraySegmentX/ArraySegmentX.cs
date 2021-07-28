@@ -80,7 +80,7 @@ public readonly struct ArraySegmentX<T>
         Array is null ? 0 : HashCode.Combine(Offset, Count, Array.GetHashCode());
 
     // Equals from netcore ArraySegment<T>
-    public override bool Equals(object? obj) =>
+    public override bool Equals(object obj) =>
         obj is ArraySegmentX<T> && Equals((ArraySegmentX<T>)obj);
 
     public bool Equals(ArraySegmentX<T> obj) =>
