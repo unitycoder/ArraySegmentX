@@ -59,10 +59,19 @@ public readonly struct ArraySegmentX<T>
     // use segment.Array[segment.Offset + i] directly when performance matters.
     public T this[int index]
     {
-        // TODO make sure it's within count.
         // don't allow accesing outside of segment.
-        get { return Array[Offset + index]; }
-        set { Array[Offset + index] = value; }
+        get
+        {
+            // make sure that [] stays within count even if array is bigger
+            if (index >= Count) throw new ArgumentOutOfRangeException("index");
+            return Array[Offset + index];
+        }
+        set
+        {
+            // make sure that [] stays within count even if array is bigger
+            if (index >= Count) throw new ArgumentOutOfRangeException("index");
+            Array[Offset + index] = value;
+        }
     }
 
     // GetHashCode from netcore ArraySegment<T>

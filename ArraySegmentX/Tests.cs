@@ -169,6 +169,23 @@ namespace ArraySegmentX
         }
 
         [Test]
+        public void ArrayOperator_WithinCount()
+        {
+            // create a small segment with two values
+            ArraySegmentX<byte> segment = new ArraySegmentX<byte>(bytes, 1, 2);
+
+            // make sure that [] stays within count even if array is bigger
+            Assert.Throws<ArgumentOutOfRangeException>(() => {
+                int _ = segment[2];
+            });
+
+            // make sure that [] stays within count even if array is bigger
+            Assert.Throws<ArgumentOutOfRangeException>(() => {
+                segment[2] = 0xFF;
+            });
+        }
+
+        [Test]
         public void GetHashCodeTest()
         {
             ArraySegmentX<byte> segment = new ArraySegmentX<byte>(bytes);
